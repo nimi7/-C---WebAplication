@@ -1,0 +1,102 @@
+﻿@model IEnumerable<FirsrtWebAplication.Models.Landlord>
+
+@*@Html.AntiForgeryToken()
+@if (Session["FullName"].ToString() == "Admin")
+{
+    ViewBag.Title = "SeeUser";
+    Layout = "~/Views/Shared/ccc.cshtml";
+}
+ else
+ {
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+ }*@
+
+@{ 
+   ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 style="color:aqua">Landlord List ^_^</h1>
+
+
+
+<div>
+    <div>
+        @if (Session["FullName"] != null)
+        {
+            <div>
+                Hello : @Session["FullName"]
+            </div>
+        }
+        else
+        {
+
+            <div>
+                @Html.ActionLink("Click Here To Login", "Index", "Users")
+            </div>
+            @*using (Html.BeginForm("Index", "Landlord", FormMethod.Post))
+                {
+                    <p>
+                        User Name : @Html.TextBox("UserName")<br/>
+                        Password : @Html.Password("Password")<br/>
+                        <input type="submit" value="Login"/>
+                    </p>
+                }*@
+        }
+
+
+    </div>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    @using (Html.BeginForm("Index", "Landlord", FormMethod.Get))
+    {
+        <p>
+            FirstName : @Html.TextBox("Search") <br />
+            <input type="submit" value="Search" />
+        </p>
+
+    }
+</div>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Landlordid)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Firstname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Lastname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Phone)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Landlordid)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Firstname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Lastname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phone)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Landlordid }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Landlordid }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Landlordid })
+            </td>
+        </tr>
+    }
+
+</table>

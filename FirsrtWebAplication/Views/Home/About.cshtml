@@ -1,0 +1,16 @@
+﻿@{
+    ViewBag.Title = "About";
+}
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
+
+<p>The Radom Number is:</p>
+
+
+<p>
+@{ 
+    Random rnd = new Random();
+    int N = rnd.Next(1, 1000);
+    ViewBag.Message = @N;
+}
+</p>

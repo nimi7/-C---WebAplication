@@ -1,0 +1,106 @@
+﻿@model IEnumerable<FirsrtWebAplication.Models.Asset>
+
+@*@Html.AntiForgeryToken()
+@if (Session["FullName"].ToString() == "Nimrod Wandam")
+{
+    ViewBag.Title = "SeeUser";
+    Layout = "~/Views/Shared/ccc.cshtml";
+}
+else
+{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}*@
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>Index</h2>
+
+
+<div>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    @using (Html.BeginForm("Index", "Asset", FormMethod.Get))
+    {
+        <p>
+            FirstName : @Html.TextBox("Search") <br />
+            <input type="submit" value="Search" />
+        </p>
+
+    }
+</div>
+<table class="table">
+    <tr>
+        @*<th>
+                @Html.DisplayNameFor(model => model.Landlordid)
+            </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.Cityid)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Street)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Neighborhood)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HouseNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Floor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Elevators)
+        </th>
+        @*<th>
+                @Html.DisplayNameFor(model => model.Propertytax)
+            </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.Rooms)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.Landlordid)
+                </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.Cityid)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Street)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Neighborhood)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HouseNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Floor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Elevators)
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.Propertytax)
+                </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.Rooms)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.AssetID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.AssetID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.AssetID })
+            </td>
+        </tr>
+    }
+
+</table>
